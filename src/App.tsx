@@ -1,6 +1,8 @@
 import './App.css'
 import 'antd/dist/reset.css';
 import { Card, Button, DatePicker } from 'antd';
+import Hello from './components/hello';
+import Goodbye from './components/Goodbye';
 
 let counter = 0
 const onChange: DatePickerProps['onChange'] = (date, dateString) => {
@@ -14,6 +16,8 @@ const onClick = (event: any) => {
 export default function App() {
   return (
     <div >
+      <Hello name= "Web API Development"/>
+      <Goodbye name= "everyone"/>
       <Card title="Default card" style={{ width: 300 }}>
         <p>Card content</p>
         <p>Card content</p>

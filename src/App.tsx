@@ -1,36 +1,38 @@
-import './App.css'
-import 'antd/dist/reset.css';
-import { Card, Button, DatePicker } from 'antd';
-import Hello from './components/hello';
-import Goodbye from './components/Goodbye';
+// import Landing from './components/Landing'
+// React tag use uppercase, html tag use lower case
+import {Layout, Space} from 'antd';
+import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
+import Home from './components/Home';
+import Dashboard from './components/Dashboard';
+import About from './components/About';
+import DetailArticle from './components/DetailArticle';
 
-let counter = 0
-const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-  console.log(date, dateString);
-};
-const onClick = (event: any) => {
-  console.log(counter++)
-}
-
+const { Header, Content, Footer} = Layout;
 
 export default function App() {
   return (
-    <div >
-      <Hello name= "Web API Development"/>
-      <Goodbye name= "everyone"/>
-      <Card title="Default card" style={{ width: 300 }}>
-        <p>Card content</p>
-        <p>Card content</p>
-        <p>Card content 123</p>
-      </Card>
+    <Router>
+      <Header>
+        <nav>
+          <Space>
+            <Link to="/">Home</Link>
+            <Link to="/dsahboard">Dashboard</Link>
+            <Link to="/about">About</Link>
 
-      <br />
-
-      <Button type="primary" onClick={onClick}>Button</Button>
-      <Button type="primary" danger>Button</Button>
-
-      <br />
-      <DatePicker onChange={onChange} />
-    </div>
+          </Space>
+        </nav>
+      </Header>
+      <Content>
+        <Routes> {/* to make hyperlink work */}
+          <Route index element={ <Home />} />
+          <Route path="/about" element={ <About />} />
+          <Route path="/dashboard" element={ <Dashboard /> } />
+          <Route path="/a/:aid" element= { <DetailArticle/>} />
+        </Routes>
+      </Content>
+      <Footer>
+        <p>VTC6003CEM Demo</p>
+      </Footer>
+    </Router>
   )
 }
